@@ -1,0 +1,141 @@
+---
+title: "Oolong"
+subtitle: "Create Validation Tests for Automated Content Analysis"
+author: "Chung-hong Chan"
+date: "`r Sys.Date()`"
+params:
+  animation: "fade"
+  twitter: "chainsawriot"
+output:
+  xaringan::moon_reader:
+    css: [default, mzes_fonts.css, mzes.css]
+    lib_dir: libs
+    nature:
+      countdown: 60000
+      highlightStyle: github
+      countIncrementalSlides: false
+      ratio: '16:9'
+---
+
+```{r xaringanExtra, echo = FALSE}
+xaringanExtra::use_tile_view()
+xaringanExtra::use_animate_all(params$animation)
+xaringanExtra::use_logo(image_url = "img/mzes_logo.png", width = 280)
+mzesalike::use_footer(params)
+```
+
+
+# The current state of text analysis in 3 slides: 1
+
+```{r, echo = FALSE}
+knitr::include_graphics("img/liwc.png")
+```
+
+---
+
+# The current state of text analysis in 3 slides: 2
+
+```{r, echo = FALSE}
+knitr::include_graphics("img/liwc2.png")
+```
+
+---
+
+# The current state of text analysis in 3 slides: 3
+
+.pull-left[
+![](img/liwc3.png)
+]
+
+.pull-right[
+![](img/phack.png)
+
+.extrasmall[Chan et al. (2020). Four best practices for measuring news sentiment using ‘off-the-shelf’ dictionaries: a large-scale p-hacking experiment. Computational Communication Research (Accepted)]
+
+]
+
+---
+
+# Solutions?
+
+```{r, echo = FALSE}
+knitr::include_graphics("img/validate.png")
+```
+
+.extrasmall[Grimmer, J., & Stewart, B. M. (2013). Text as data: The promise and pitfalls of automatic content analysis methods for political texts. Political analysis, 21(3), 267-297.]
+
+---
+class: inverse, middle, center
+
+# But how?
+
+---
+
+# Before oolong
+
+```{r, echo = FALSE}
+knitr::include_graphics("img/beforeoolong.png")
+```
+
+---
+
+# With oolong
+
+```r
+## install.packages("oolong")
+require(oolong)
+test <- create_oolong(input_corpus = trump2k,
+                      construct = "positive")
+test$do_gold_standard_test()
+```
+
+---
+
+![](img/shiny.png)
+
+---
+
+![](img/diag.png)
+
+---
+
+![](img/fig1.png)
+
+---
+
+# What have we done after the grant?
+
+.pull-left[
+Support all topic model packages
+
+Speedy coding
+
+Online deployment (Experimental)
+
+A JOSS paper (we passed both reviewers)
+]
+
+.pull-right[
+![](img/joss.png)
+]
+
+---
+
+# Problems
+
+Open source doesn't mean more developers
+
+£ can't buy time
+
+---
+class: hide-footer
+
+# oolong
+
+A Standardized way to validate your automated content analysis tools (dictionary, topic models)
+
+```r
+install.packages("oolong")
+```
+
+- `r fontawesome::fa("github")` [chainsawriot/oolong](https://github.com/chainsawriot/oolong)
